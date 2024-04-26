@@ -28,15 +28,24 @@ def public_api_client(base_url, api_headers):
     return GeneralPublicAPIMethods(base_url, api_headers)
 
 
-@pytest.fixture(scope='session')
-def auth_token_env():
-    return os.environ.get("PUBLIC_API_TOKEN")
+# @pytest.fixture(scope='session')
+# def auth_token_env():
+#     return os.environ.get("PUBLIC_API_TOKEN")
 
 
 def pytest_addoption(parser):
     parser.addoption("--base_url", action="store", default="https://api.serverspace.io/api/v1")
     parser.addoption("--auth_token", action="store",
                      default="042ef82c8751f62ba514d266468e599e2a60b7660f3d1e5080ba98743089e625")
+
+
+@pytest.fixture(scope="session")
+def auth_token():
+    # Получаем ключ API из переменной окружения
+    api_key = os.environ.get("AUTH_TOKEN")
+    if not api_key:
+        raise ValueError("API key not found in environment variable AUTH_TOKEN")
+    return api_key
 
 
 @pytest.fixture()
