@@ -1,5 +1,6 @@
 import pytest
 from api_testing.api_funcs import PublicAPIFuncs
+from allure import title, feature
 
 edit_vm_data = {
     "location_id": "am2",
@@ -26,6 +27,8 @@ edit_vm_data = {
 }
 
 
+@feature("Public API: vStack servers")
+@title("Changing the virtual machine configuration (CPU and RAM)")
 @pytest.mark.parametrize("cpu, ram_mb, expected_cpu, expected_ram_mb, expected_error_code, expected_error_message", [
     ('3', '2048', 3, 2048, None, None),
     ('1', '8192', 1, 8192, None, None),
@@ -36,6 +39,7 @@ edit_vm_data = {
 ])
 def test_edit_vm_configuration(public_api_client, cpu, ram_mb, expected_cpu, expected_ram_mb, expected_error_code,
                                expected_error_message):
+    """The test checks the PUT request to change CPU and RAM for a virtual machine with valid and invalid values"""
     create_vm_response = public_api_client.create_vm(**edit_vm_data)
     create_vm_response_json = create_vm_response.json()
     assert create_vm_response is not None, 'Failed to create vm'
@@ -81,6 +85,8 @@ add_volume_vm_data = {
 }
 
 
+@feature("Public API: vStack servers")
+@title("Add a volume to a virtual machine")
 @pytest.mark.parametrize("name, size_mb, expected_name, expected_size_mb, expected_error_code, expected_error_message",
                          [
                              ('valid', '30720', 'valid', 30720, None, None),
@@ -91,6 +97,7 @@ add_volume_vm_data = {
                          ])
 def test_add_vm_volume(public_api_client, name, size_mb, expected_name, expected_size_mb, expected_error_code,
                        expected_error_message):
+    """Test checks the add volume request for a virtual machine with valid and invalid values"""
     create_vm_response = public_api_client.create_vm(**add_volume_vm_data)
     assert create_vm_response is not None, 'Failed to create vm'
     create_vm_response_json = create_vm_response.json()
