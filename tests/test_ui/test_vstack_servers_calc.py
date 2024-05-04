@@ -6,17 +6,17 @@ from ui_testing.panel_elements.auth import AuthPage
 config = configparser.ConfigParser()
 config.read('config.ini')
 
-# Read credentials from the config file
-username = config['Credentials']['stage_username']
-password = config['Credentials']['stage_password']
+# # Read credentials from the config file
+# username = config['Credentials']['stage_username']
+# password = config['Credentials']['stage_password']
 
 
 @feature("vStack Servers")
 @title("Actions with volumes")
-def test_volumes(browser):
+def test_volumes(browser, auth_credentials):
     """Checking that the boot volume cannot be deleted or decreased, actions with volumes"""
     browser.get(browser.panel_url)
-    panel_page = AuthPage(browser).login(username, password)
+    panel_page = AuthPage(browser).login(auth_credentials['username'], auth_credentials['password'])
     servers_page = panel_page.click_vstack_servers()
     calculator_page = servers_page.click_create_vstack_server()
     calculator_page \

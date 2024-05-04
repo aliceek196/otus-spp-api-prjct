@@ -1,6 +1,5 @@
 import json
 import os
-
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -52,6 +51,14 @@ def auth_token():
     if not api_key:
         raise ValueError("API key not found in environment variable AUTH_TOKEN")
     return api_key
+
+
+@pytest.fixture(scope='session')
+def auth_credentials():
+    return {
+        'username': os.getenv('SS4T_USER'),
+        'password': os.getenv('SS4T_PASSWORD')
+    }
 
 
 @pytest.fixture()
