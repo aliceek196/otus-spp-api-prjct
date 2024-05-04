@@ -1,22 +1,15 @@
-import configparser
 from allure import title, feature
-
 from ui_testing.panel_elements.auth import AuthPage
-
-config = configparser.ConfigParser()
-config.read('config.ini')
-
-# Read credentials from the config file
-username = config['Credentials']['stage_username']
-password = config['Credentials']['stage_password']
 
 
 @feature("vStack Servers")
 @title("Actions with volumes")
-def test_volumes(browser):
-    """Checking that the boot volume cannot be deleted or decreased, actions with volumes"""
+def test_volumes(browser, auth_credentials):
+    """Checking that the boot volume cannot be deleted
+    or decreased, actions with volumes"""
     browser.get(browser.panel_url)
-    panel_page = AuthPage(browser).login(username, password)
+    panel_page = AuthPage(browser).login(auth_credentials['username'],
+                                         auth_credentials['password'])
     servers_page = panel_page.click_vstack_servers()
     calculator_page = servers_page.click_create_vstack_server()
     calculator_page \
@@ -29,10 +22,11 @@ def test_volumes(browser):
 
 @feature("vStack Servers")
 @title("Select images")
-def test_images(browser):
+def test_images(browser, auth_credentials):
     """Check that the selected image is displayed in the calculator footer"""
     browser.get(browser.panel_url)
-    panel_page = AuthPage(browser).login(username, password)
+    panel_page = AuthPage(browser).login(auth_credentials['username'],
+                                         auth_credentials['password'])
     servers_page = panel_page.click_vstack_servers()
     calculator_page = servers_page.click_create_vstack_server()
     calculator_page \
@@ -50,10 +44,11 @@ def test_images(browser):
 
 @feature("vStack Servers")
 @title("Select locations")
-def test_locations(browser):
-    """Check that the selected location is displayed in the calculator footer"""
+def test_locations(browser, auth_credentials):
+    """Check that the selected location is displayed in calculator footer"""
     browser.get(browser.panel_url)
-    panel_page = AuthPage(browser).login(username, password)
+    panel_page = AuthPage(browser).login(auth_credentials['username'],
+                                         auth_credentials['password'])
     servers_page = panel_page.click_vstack_servers()
     calculator_page = servers_page.click_create_vstack_server()
     calculator_page \
@@ -68,10 +63,11 @@ def test_locations(browser):
 
 @feature("vStack Servers")
 @title("Check configuration")
-def test_edit_configuration(browser):
+def test_edit_configuration(browser, auth_credentials):
     """Checking for server configuration changes"""
     browser.get(browser.panel_url)
-    panel_page = AuthPage(browser).login(username, password)
+    panel_page = AuthPage(browser).login(auth_credentials['username'],
+                                         auth_credentials['password'])
     servers_page = panel_page.click_vstack_servers()
     calculator_page = servers_page.click_create_vstack_server()
     calculator_page \
@@ -82,10 +78,11 @@ def test_edit_configuration(browser):
 
 @feature("vStack Servers")
 @title("Check fix configuration")
-def test_fix_configuration(browser):
+def test_fix_configuration(browser, auth_credentials):
     """Checking for server fix configuration selected"""
     browser.get(browser.panel_url)
-    panel_page = AuthPage(browser).login(username, password)
+    panel_page = AuthPage(browser).login(auth_credentials['username'],
+                                         auth_credentials['password'])
     servers_page = panel_page.click_vstack_servers()
     calculator_page = servers_page.click_create_vstack_server()
     calculator_page \
@@ -96,10 +93,12 @@ def test_fix_configuration(browser):
 
 @feature("vStack Servers")
 @title("Actions with networks")
-def test_networks(browser):
-    """Checking for changes in network interfaces, maximum number and summarising bandwidth in the footer"""
+def test_networks(browser, auth_credentials):
+    """Checking for changes in network interfaces,
+    maximum number and summarising bandwidth in the footer"""
     browser.get(browser.panel_url)
-    panel_page = AuthPage(browser).login(username, password)
+    panel_page = AuthPage(browser).login(auth_credentials['username'],
+                                         auth_credentials['password'])
     servers_page = panel_page.click_vstack_servers()
     calculator_page = servers_page.click_create_vstack_server()
     calculator_page \
@@ -112,10 +111,11 @@ def test_networks(browser):
 
 @feature("vStack Servers")
 @title("OneClickApps check")
-def test_one_click_apps(browser):
+def test_one_click_apps(browser, auth_credentials):
     """Check for available OneClickApps applications"""
     browser.get(browser.panel_url)
-    panel_page = AuthPage(browser).login(username, password)
+    panel_page = AuthPage(browser).login(auth_credentials['username'],
+                                         auth_credentials['password'])
     servers_page = panel_page.click_vstack_servers()
     calculator_page = servers_page.click_create_vstack_server()
     calculator_page \
@@ -132,10 +132,11 @@ def test_one_click_apps(browser):
 
 @feature("vStack Servers")
 @title("Multiple servers check")
-def test_multiple_servers(browser):
+def test_multiple_servers(browser, auth_credentials):
     """Checking the creation of multiple servers"""
     browser.get(browser.panel_url)
-    panel_page = AuthPage(browser).login(username, password)
+    panel_page = AuthPage(browser).login(auth_credentials['username'],
+                                         auth_credentials['password'])
     servers_page = panel_page.click_vstack_servers()
     calculator_page = servers_page.click_create_vstack_server()
     calculator_page \
@@ -146,10 +147,11 @@ def test_multiple_servers(browser):
 
 @feature("vStack Servers")
 @title("Check API examples")
-def test_api_examples(browser):
+def test_api_examples(browser, auth_credentials):
     """Checking the API example appeared"""
     browser.get(browser.panel_url)
-    panel_page = AuthPage(browser).login(username, password)
+    panel_page = AuthPage(browser).login(auth_credentials['username'],
+                                         auth_credentials['password'])
     servers_page = panel_page.click_vstack_servers()
     calculator_page = servers_page.click_create_vstack_server()
     calculator_page.check_api_example()
@@ -157,10 +159,11 @@ def test_api_examples(browser):
 
 @feature("vStack Servers")
 @title("Check Tags actions")
-def test_tags(browser):
+def test_tags(browser, auth_credentials):
     """Checking actions with tags"""
     browser.get(browser.panel_url)
-    panel_page = AuthPage(browser).login(username, password)
+    panel_page = AuthPage(browser).login(auth_credentials['username'],
+                                         auth_credentials['password'])
     servers_page = panel_page.click_vstack_servers()
     calculator_page = servers_page.click_create_vstack_server()
     calculator_page\
@@ -172,10 +175,11 @@ def test_tags(browser):
 
 @feature("vStack Servers")
 @title("Check authentication")
-def test_authentication(browser):
+def test_authentication(browser, auth_credentials):
     """Checking authentication options"""
     browser.get(browser.panel_url)
-    panel_page = AuthPage(browser).login(username, password)
+    panel_page = AuthPage(browser).login(auth_credentials['username'],
+                                         auth_credentials['password'])
     servers_page = panel_page.click_vstack_servers()
     calculator_page = servers_page.click_create_vstack_server()
     calculator_page\
@@ -188,10 +192,11 @@ def test_authentication(browser):
 
 @feature("vStack Servers")
 @title("Check affinity-groups")
-def test_affinity_groups(browser):
+def test_affinity_groups(browser, auth_credentials):
     """Checking affinity-groups options"""
     browser.get(browser.panel_url)
-    panel_page = AuthPage(browser).login(username, password)
+    panel_page = AuthPage(browser).login(auth_credentials['username'],
+                                         auth_credentials['password'])
     servers_page = panel_page.click_vstack_servers()
     calculator_page = servers_page.click_create_vstack_server()
     calculator_page \
@@ -201,12 +206,4 @@ def test_affinity_groups(browser):
         .delete_group() \
         .select_affinity_groups() \
         .add_new_group("affinity") \
-        .delete_group() \
-
-
-
-
-
-
-
-
+        .delete_group()

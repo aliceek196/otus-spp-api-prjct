@@ -1,6 +1,5 @@
 import json
 import os
-
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -16,9 +15,19 @@ def base_endpoint(request):
     return request.config.getoption("--base_endpoint")
 
 
+@pytest.fixture(scope="session")
+def auth_token():
+    # Получаем ключ API из переменной окружения
+    api_key = os.environ.get("AUTH_TOKEN")
+    if not api_key:
+        raise ValueError(
+            "API key not found in environment variable AUTH_TOKEN")
+    return api_key
+
+
 @pytest.fixture(scope='session')
-def auth_token(request):
-    return request.config.getoption("--auth_token")
+def api_token(request):
+    return request.config.getoption("--api_token")
 
 
 @pytest.fixture(scope='session')
@@ -35,23 +44,26 @@ def public_api_client(base_endpoint, api_headers):
 
 
 def pytest_addoption(parser, api_key=None):
-    parser.addoption("--base_endpoint", action="store", default="https://api.serverspace.io/api/v1")
-    parser.addoption("--auth_token", action="store",
+    parser.addoption("--base_endpoint", action="store",
+                     default="https://api.serverspace.io/api/v1")
+    parser.addoption("--api_token", action="store",
                      default=api_key)
     parser.addoption("--browser", action="store", default="firefox")
-    parser.addoption("--panel_url", action="store", default="https://auth.ss4test.com")
+    parser.addoption("--panel_url", action="store",
+                     default="https://auth.ss4test.com")
     parser.addoption("--headless", action="store_true")
-    parser.addoption("--executor", action="store", default="93.183.73.3", help="Use 'local' to run tests locally")
+    parser.addoption("--executor", action="store",
+                     default="93.183.73.3",
+                     help="Use 'local' to run tests locally")
     parser.addoption("--bv", action="store", default="123.0")
 
 
-@pytest.fixture(scope="session")
-def auth_token():
-    # Получаем ключ API из переменной окружения
-    api_key = os.environ.get("AUTH_TOKEN")
-    if not api_key:
-        raise ValueError("API key not found in environment variable AUTH_TOKEN")
-    return api_key
+@pytest.fixture(scope='session')
+def auth_credentials():
+    return {
+        'username': os.getenv('SS4T_USER'),
+        'password': os.getenv('SS4T_PASSWORD')
+    }
 
 
 @pytest.fixture()

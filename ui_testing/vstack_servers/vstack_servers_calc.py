@@ -7,110 +7,170 @@ class VstackServersCalculatorPage(BasePage):
     CREATE_SERVER_BUTTON = (By.XPATH, "//*[text()='Создать сервер']")
     LOGIN_AUTHORIZATION = (By.XPATH, "//*[text()='Логин / пароль']")
     SSH_AUTHORIZATION = (By.XPATH, "//*[text()='SSH-ключи']")
-    INPUT_VSTACK_SERVER_NAME = (By.XPATH, "//input[contains(@placeholder, 'Введите название сервера')]")
-    INPUT_GROUP_NAME = (By.XPATH, "//input[contains(@placeholder, 'Введите название группы')]")
+    INPUT_VSTACK_SERVER_NAME = (By.XPATH, "//input[contains(@placeholder, "
+                                          "'Введите название сервера')]")
+    INPUT_GROUP_NAME = (By.XPATH, "//input[contains(@placeholder, "
+                                  "'Введите название группы')]")
     CREATE_GROUP_BUTTON = (By.XPATH, "//button[@role='submit-btn']")
     CREATE_BUTTON = (By.XPATH, "//*[text()='Создать']")
     UBUNTU_IMAGE = (By.XPATH, "//*[text()='Ubuntu']")
-    UBUNTU_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' and contains(text(), 'Ubuntu')]")
+    UBUNTU_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' "
+                                     "and contains(text(), 'Ubuntu')]")
     ORACLE_IMAGE = (By.XPATH, "//*[text()='Oracle Linux']")
-    ORACLE_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' and contains(text(), 'Oracle')]")
+    ORACLE_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' "
+                                     "and contains(text(), 'Oracle')]")
     CENTOS_IMAGE = (By.XPATH, "//*[text()='CentOS']")
-    CENTOS_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' and contains(text(), 'CentOS')]")
+    CENTOS_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' "
+                                     "and contains(text(), 'CentOS')]")
     FBSD_IMAGE = (By.XPATH, "//*[text()='FreeBSD']")
-    FBSD_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' and contains(text(), 'FreeBSD')]")
+    FBSD_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' "
+                                   "and contains(text(), 'FreeBSD')]")
     ALTLINUX_IMAGE = (By.XPATH, "//*[text()='AltLinux']")
-    ALTLINUX_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' and contains(text(), 'AltLinux')]")
+    ALTLINUX_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' "
+                                       "and contains(text(), 'AltLinux')]")
     ALMALINUX_IMAGE = (By.XPATH, "//*[text()='AlmaLinux']")
-    ALMALINUX_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' and contains(text(), 'AlmaLinux')]")
+    ALMALINUX_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' "
+                                        "and contains(text(), 'AlmaLinux')]")
     REDOS_IMAGE = (By.XPATH, "//*[text()='RedOS']")
-    REDOS_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' and contains(text(), 'RedOS')]")
+    REDOS_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' "
+                                    "and contains(text(), 'RedOS')]")
     WINDOWS_IMAGE = (By.XPATH, "//*[text()='Windows']")
-    WINDOWS_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' and contains(text(), 'Windows')]")
+    WINDOWS_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' "
+                                      "and contains(text(), 'Windows')]")
     DEBIAN_IMAGE = (By.XPATH, "//*[text()='Debian']")
-    DEBIAN_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' and contains(text(), 'Debian')]")
+    DEBIAN_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' "
+                                     "and contains(text(), 'Debian')]")
     KALILINUX_IMAGE = (By.XPATH, "//*[text()='KaliLinux']")
-    KALILINUX_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' and contains(text(), 'KaliLinux')]")
+    KALILINUX_IMAGE_FOOTER = (By.XPATH, "//span[@role='os-name' "
+                                        "and contains(text(), 'KaliLinux')]")
     FIX_CONFIGURATION = (By.XPATH, "//*[text()='Фиксированные конфигурации']")
-    SECOND_FIX_CONFIGURATION = (By.XPATH, "(//div[@class='vue-radio-block fixed-config-item'])[2]")
-    DELETE_FIRST_NIC_BUTTON = (By.XPATH, "//button[@class='vue-button vue-button--big reverse danger vue-remove-btn "
-                                         "server-configuration-flex-networks-list-item-actions-delete']")
-    NO_PUBLIC_NIC_MESSAGE = (By.XPATH, "//*[text()='Виртуальный сервер будет создан без подключения к публичной сети']")
+    SECOND_FIX_CONFIG = (By.XPATH, "(//div[@class='vue-radio-block "
+                                   "fixed-config-item'])[2]")
+    DELETE_FIRST_NIC = (By.XPATH, "//button[@class='vue-button "
+                                  "vue-button--big reverse danger "
+                                  "vue-remove-btn server-configuration-flex-"
+                                  "networks-list-item-actions-delete']")
+    NO_PUBLIC_NIC_MESSAGE = (By.XPATH, "//*[text()='Виртуальный сервер будет "
+                                       "создан без подключения к "
+                                       "публичной сети']")
     ONE_CLICK_APPS = (By.XPATH, "//div[@class='vstack-block applications']")
-    INPUT_TAG = (By.XPATH, "//input[contains(@placeholder, 'Выберите тег или введите новый')]")
+    INPUT_TAG = (By.XPATH, "//input[contains(@placeholder, "
+                           "'Выберите тег или введите новый')]")
     API_BUTTON = (By.XPATH, "//*[text()=' API ']")
-    API_CODE = (By.XPATH, "//div[@class='code vstack-automatization-api-code']")
+    API_CODE = (By.XPATH, "//div[@class='code vstack-automatization"
+                          "-api-code']")
     POPUP_CLOSE_BUTTON = (By.XPATH, "//div[@class='vue-popup-close']")
-    INCREASE_CPU_BUTTON = (By.XPATH, "(//button[@class='vue-counter__btn vue-counter__btn--plus'])[1]")
-    INCREASE_CPU_ICON = (
-        By.XPATH, "//span[@class='popup-server-edit-params-item-control-diff'][contains(text(),'+ 1')]")
-    INCREASE_RAM_BUTTON = (By.XPATH, "(//button[@class='vue-counter__btn vue-counter__btn--plus'])[2]")
-    INCREASE_BOOT_DISK_BUTTON = (By.XPATH, "(//div[@class='configuration-grid with-control']//following::button["
-                                           "@class='vue-counter__btn vue-counter__btn--plus'])[1]")
-    DECREASE_BOOT_DISK_BUTTON = (By.XPATH, "(//div[@class='configuration-grid with-control']//following::button["
-                                           "@class='vue-counter__btn vue-counter__btn--minus'])[1]")
-    DISABLED_DELETE_BOOT_DISK = (By.XPATH, "//button[@class='vue-button vue-button--big disabled reverse danger "
-                                           "vue-remove-btn disabled "
-                                           "server-configuration-flex-disks-list-item-actions-delete']")
-    BOOT_DISK_TOOLTIP = (By.XPATH, "//*[text()='Нельзя удалить загрузочный диск']")
-    BOOT_DISK_SIZE_COUNTER = (By.XPATH, "(//div[@class='server-configuration-item "
-                                        "server-configuration-flex-disks-list-item-control']//following::span["
-                                        "@class='vue-counter__value'])[1]")
+    INCREASE_CPU = (By.XPATH, "(//button[@class='vue-counter__btn vue-counter"
+                              "__btn--plus'])[1]")
+    INCREASE_RAM = (By.XPATH, "(//button[@class='vue-counter__btn vue-counter"
+                              "__btn--plus'])[2]")
+    DECREASE_BOOT_DISK = (By.XPATH, "(//div[@class='configuration-grid with-"
+                                    "control']//following::button[@class="
+                                    "'vue-counter__btn vue-counter__btn--"
+                                    "minus'])[1]")
+    DISABLED_DELETE_BOOT_DISK = (By.XPATH, "//button[@class='vue-button vue-"
+                                           "button--big disabled reverse "
+                                           "danger vue-remove-btn disabled "
+                                           "server-configuration-flex-disks-"
+                                           "list-item-actions-delete']")
+    BOOT_DISK_TOOLTIP = (By.XPATH, "//*[text()='Нельзя удалить "
+                                   "загрузочный диск']")
+    BOOT_DISK_SIZE_COUNTER = (By.XPATH, "(//div[@class='server-configuration"
+                                        "-item server-configuration-flex-disks"
+                                        "-list-item-control']//following::span"
+                                        "[@class='vue-counter__value'])[1]")
     ADD_VOLUME_BUTTON = (By.XPATH, "//*[text()='Добавить том']")
-    INPUT_FIRST_ADDITIONAL_DISK_NAME = (By.XPATH, "(//input[contains(@placeholder, 'Название тома')])[2]")
-    INCREASE_FIRST_ADDITIONAL_DISK = (By.XPATH, "(//div[@class='configuration-grid with-control']//following::button["
-                                                "@class='vue-counter__btn vue-counter__btn--plus'])[2]")
-    INPUT_SECOND_ADDITIONAL_DISK_NAME = (By.XPATH, "(//input[contains(@placeholder, 'Название тома')])[3]")
-    INCREASE_SECOND_ADDITIONAL_DISK = (By.XPATH, "(//div[@class='configuration-grid "
-                                                 "with-control']//following::button[@class='vue-counter__btn "
-                                                 "vue-counter__btn--plus'])[3]")
-    CHECK_DISKS_SUM_CALC = (By.XPATH, "//span[@role='ssd-value' and text()='125 ГБ']")
-    ADD_VOLUME_BUTTON_DISABLED = (By.XPATH, "//button[@class='vue-button vue-button--small disabled vue-add-btn "
-                                            "disabled add-item-main']")
-    DELETE_THIRD_ADDITIONAL_DISK = (By.XPATH, "(//button[@class='vue-button vue-button--big reverse danger "
-                                              "vue-remove-btn "
-                                              "server-configuration-flex-disks-list-item-actions-delete'])[3]")
+    INPUT_FIRST_ADD_DISK_NAME = (By.XPATH, "(//input[contains(@placeholder, "
+                                           "'Название тома')])[2]")
+    INCREASE_FIRST_ADD_DISK = (By.XPATH, "(//div[@class='configuration-grid "
+                                         "with-control']//following::button"
+                                         "[@class='vue-counter__btn vue-"
+                                         "counter__btn--plus'])[2]")
+    INPUT_SECOND_ADD_DISK_NAME = (By.XPATH, "(//input[contains(@placeholder, "
+                                            "'Название тома')])[3]")
+    INCREASE_SECOND_ADD_DISK = (By.XPATH, "(//div[@class='configuration-grid "
+                                          "with-control']//following::button"
+                                          "[@class='vue-counter__btn vue-"
+                                          "counter__btn--plus'])[3]")
+    CHECK_DISKS_SUM_CALC = (By.XPATH, "//span[@role='ssd-value' "
+                                      "and text()='125 ГБ']")
+    ADD_VOLUME_DISABLED = (By.XPATH, "//button[@class='vue-button vue-button"
+                                     "--small disabled vue-add-btn "
+                                     "disabled add-item-main']")
+    DELETE_THIRD_ADD_DISK = (By.XPATH, "(//button[@class='vue-button vue-butto"
+                                       "n--big reverse danger vue-remove-btn "
+                                       "server-configuration-flex-disks-list-"
+                                       "item-actions-delete'])[3]")
     DEFAULT_PUBLIC_NIC = (By.XPATH, "//*[text()='Публичная сеть']")
     AMSTERDAM = (By.XPATH, "//*[text()='Амстердам']")
-    AMSTERDAM_FOOTER = (By.XPATH, "//span[@role='location' and contains(text(), 'Амстердам')]")
+    AMSTERDAM_FOOTER = (By.XPATH, "//span[@role='location' "
+                                  "and contains(text(), 'Амстердам')]")
     NEW_JERSEY = (By.XPATH, "//*[text()='Нью-Джерси']")
-    NEW_JERSEY_FOOTER = (By.XPATH, "//span[@role='location' and contains(text(), 'Нью-Джерси')]")
+    NEW_JERSEY_FOOTER = (By.XPATH, "//span[@role='location' "
+                                   "and contains(text(), 'Нью-Джерси')]")
     MOSCOW = (By.XPATH, "//*[text()='Москва']")
-    MOSCOW_FOOTER = (By.XPATH, "//span[@role='location' and contains(text(), 'Москва')]")
+    MOSCOW_FOOTER = (By.XPATH, "//span[@role='location' "
+                               "and contains(text(), 'Москва')]")
     ALMATY = (By.XPATH, "//*[text()='Алматы']")
-    ALMATY_FOOTER = (By.XPATH, "//span[@role='location' and contains(text(), 'Алматы')]")
+    ALMATY_FOOTER = (By.XPATH, "//span[@role='location' "
+                               "and contains(text(), 'Алматы')]")
     ISTANBUL = (By.XPATH, "//*[text()='Стамбул']")
-    ISTANBUL_FOOTER = (By.XPATH, "//span[@role='location' and contains(text(), 'Стамбул')]")
+    ISTANBUL_FOOTER = (By.XPATH, "//span[@role='location' "
+                                 "and contains(text(), 'Стамбул')]")
     TORONTO = (By.XPATH, "//*[text()='Торонто']")
-    TORONTO_FOOTER = (By.XPATH, "//span[@role='location' and contains(text(), 'Торонто')]")
+    TORONTO_FOOTER = (By.XPATH, "//span[@role='location' "
+                                "and contains(text(), 'Торонто')]")
     SAO_PAULO = (By.XPATH, "//*[text()='Сан-Паулу']")
-    SAO_PAULO_FOOTER = (By.XPATH, "//span[@role='location' and contains(text(), 'Сан-Паулу')]")
+    SAO_PAULO_FOOTER = (By.XPATH, "//span[@role='location' "
+                                  "and contains(text(), 'Сан-Паулу')]")
     CPU_VALUE_FOOTER = (By.XPATH, "//span[@role='cpu-value' and text()='3']")
-    DECREASE_CPU_BUTTON = (By.XPATH, "(//button[@class='vue-counter__btn vue-counter__btn--minus'])[1]")
-    RAM_VALUE_FOOTER = (By.XPATH, "//span[@role='ram-value' and text()='4 ГБ']")
-    DECREASE_RAM_BUTTON = (By.XPATH, "(//button[@class='vue-counter__btn vue-counter__btn--minus'])[2]")
-    SECOND_FIX_CPU_FOOTER = (By.XPATH, "//span[@role='cpu-value' and text()='1']")
-    SECOND_FIX_RAM_FOOTER = (By.XPATH, "//span[@role='ram-value' and text()='2 ГБ']")
-    SECOND_FIX_SSD_FOOTER = (By.XPATH, "//span[@role='ssd-value' and text()='50 ГБ']")
-    SECOND_FIX_BANDWIDTH_FOOTER = (By.XPATH, "//span[@role='bandwidth-value' and text()='50 Мбит/с']")
-    SIXTH_FIX_CONFIGURATION = (By.XPATH, "(//div[@class='vue-radio-block fixed-config-item'])[5]")
-    SIXTH_FIX_CPU_FOOTER = (By.XPATH, "//span[@role='cpu-value' and text()='3']")
-    SIXTH_FIX_RAM_FOOTER = (By.XPATH, "//span[@role='ram-value' and text()='1 ГБ']")
-    SIXTH_FIX_SSD_FOOTER = (By.XPATH, "//span[@role='ssd-value' and text()='60 ГБ']")
-    SIXTH_FIX_BANDWIDTH_FOOTER = (By.XPATH, "//span[@role='bandwidth-value' and text()='50 Мбит/с']")
-    INCREASE_BANDWIDTH_BUTTON = (By.XPATH, "(//button[@class='vue-counter__btn vue-counter__btn--plus'])[4]")
-    DECREASE_BANDWIDTH_BUTTON = (By.XPATH, "(//button[@class='vue-counter__btn vue-counter__btn--minus'])[4]")
-    NETWORK_VALUE_FOOTER = (By.XPATH, "//span[@role='bandwidth-value' and text()='80 Мбит/с']")
+    DECREASE_CPU = (By.XPATH, "(//button[@class='vue-counter__btn "
+                              "vue-counter__btn--minus'])[1]")
+    RAM_VALUE_FOOTER = (By.XPATH, "//span[@role='ram-value' "
+                                  "and text()='4 ГБ']")
+    DECREASE_RAM_BUTTON = (By.XPATH, "(//button[@class='vue-counter__btn "
+                                     "vue-counter__btn--minus'])[2]")
+    SECOND_FIX_CPU_FOOTER = (By.XPATH, "//span[@role='cpu-value' "
+                                       "and text()='1']")
+    SECOND_FIX_RAM_FOOTER = (By.XPATH, "//span[@role='ram-value' "
+                                       "and text()='2 ГБ']")
+    SECOND_FIX_SSD_FOOTER = (By.XPATH, "//span[@role='ssd-value' "
+                                       "and text()='50 ГБ']")
+    SECOND_FIX_BANDWIDTH_FOOTER = (By.XPATH, "//span[@role='bandwidth-value' "
+                                             "and text()='50 Мбит/с']")
+    SIXTH_FIX_CONFIG = (By.XPATH, "(//div[@class='vue-radio-block "
+                                  "fixed-config-item'])[5]")
+    SIXTH_FIX_CPU_FOOTER = (By.XPATH, "//span[@role='cpu-value' "
+                                      "and text()='3']")
+    SIXTH_FIX_RAM_FOOTER = (By.XPATH, "//span[@role='ram-value' "
+                                      "and text()='1 ГБ']")
+    SIXTH_FIX_SSD_FOOTER = (By.XPATH, "//span[@role='ssd-value' "
+                                      "and text()='60 ГБ']")
+    SIXTH_FIX_BANDWIDTH_FOOTER = (By.XPATH, "//span[@role='bandwidth-value' "
+                                            "and text()='50 Мбит/с']")
+    INCREASE_BANDWIDTH = (By.XPATH, "(//button[@class='vue-counter__btn "
+                                    "vue-counter__btn--plus'])[4]")
+    DECREASE_BANDWIDTH = (By.XPATH, "(//button[@class='vue-counter__btn "
+                                    "vue-counter__btn--minus'])[4]")
+    NETWORK_VALUE_FOOTER = (By.XPATH, "//span[@role='bandwidth-value' "
+                                      "and text()='80 Мбит/с']")
     ADD_NETWORK_BUTTON = (By.XPATH, "//*[text()='Добавить сеть']")
-    ADD_NETWORK_BUTTON_DISABLED = (By.XPATH, "//button[@class='vue-button vue-button--small disabled vue-add-btn "
-                                             "disabled server-configuration-empty-btn']")
-    DELETE_NETWORK_BUTTON = (By.XPATH, "(//span[@class='vue-remove-btn-icon'])[4]")
-    NETWORK_SUM_VALUE_FOOTER = (By.XPATH, "//span[@role='bandwidth-value' and text()='180 Мбит/с']")
-    ADD_SERVER_BUTTON = (By.XPATH, "//div[@class='vue-counter__btn vue-counter__btn--plus']")
-    SERVER_MAXIMUM_WARNING = (By.XPATH, "//*[text()='Одновременно можно создать не более 5 серверов.']")
-    DELETE_SERVER_BUTTON = (By.XPATH, "//div[@class='vue-counter__btn vue-counter__btn--minus']")
-    DELETE_TAG_BUTTON = (By.XPATH, "(//span[@class='vue-tags-item-remove v-popper--has-tooltip'])[1]")
-    SHOW_AFFINITY = (By.XPATH, "//button[@class='vue-button vue-button--small reverse more vstack-groups-show-button']")
+    ADD_NETWORK_DISABLED = (By.XPATH, "//button[@class='vue-button vue-button"
+                                      "--small disabled vue-add-btn disabled "
+                                      "server-configuration-empty-btn']")
+    DELETE_NETWORK = (By.XPATH, "(//span[@class='vue-remove-btn-icon'])[4]")
+    NETWORK_SUM_VALUE_FOOTER = (By.XPATH, "//span[@role='bandwidth-value' "
+                                          "and text()='180 Мбит/с']")
+    ADD_SERVER_BUTTON = (By.XPATH, "//div[@class='vue-counter__btn "
+                                   "vue-counter__btn--plus']")
+    SERVER_MAXIMUM_WARNING = (By.XPATH, "//*[text()='Одновременно можно "
+                                        "создать не более 5 серверов.']")
+    DELETE_SERVER_BUTTON = (By.XPATH, "//div[@class='vue-counter__btn "
+                                      "vue-counter__btn--minus']")
+    DELETE_TAG_BUTTON = (By.XPATH, "(//span[@class='vue-tags-item-remove "
+                                   "v-popper--has-tooltip'])[1]")
+    SHOW_AFFINITY = (By.XPATH, "//button[@class='vue-button vue-button--small "
+                               "reverse more vstack-groups-show-button']")
     ADD_NEW_GROUP_BUTTON = (By.XPATH, "//*[text()='Добавить новую группу']")
     ANTI_AFFINITY_GROUPS = (By.XPATH, "//*[text()='Anti-Affinity']")
     AFFINITY_GROUPS = (By.XPATH, "//*[text()='Affinity']")
@@ -171,7 +231,8 @@ class VstackServersCalculatorPage(BasePage):
         assert self.get_element(self.REDOS_IMAGE_FOOTER)
         return self
 
-    @step("Select Windows image and check no ssh auth in server calculator page")
+    @step("Select Windows image and check no "
+          "ssh auth in server calculator page")
     def select_windows_image(self):
         self.get_element(self.WINDOWS_IMAGE).click()
         assert self.element_disappeared(self.SSH_AUTHORIZATION)
@@ -198,12 +259,12 @@ class VstackServersCalculatorPage(BasePage):
     @step("Select fix configuration in server calculator page")
     def select_fix_configuration(self):
         self.get_element(self.FIX_CONFIGURATION).click()
-        self.scroll_and_get_element(self.SECOND_FIX_CONFIGURATION).click()
+        self.scroll_and_get_element(self.SECOND_FIX_CONFIG).click()
         return self
 
     @step("Select second fix configuration")
     def select_second_fix_configuration(self):
-        self.scroll_and_get_element(self.SECOND_FIX_CONFIGURATION).click()
+        self.scroll_and_get_element(self.SECOND_FIX_CONFIG).click()
         assert self.get_element(self.SECOND_FIX_CPU_FOOTER)
         assert self.get_element(self.SECOND_FIX_RAM_FOOTER)
         assert self.get_element(self.SECOND_FIX_SSD_FOOTER)
@@ -212,7 +273,7 @@ class VstackServersCalculatorPage(BasePage):
 
     @step("Select sixth fix configuration")
     def select_sixth_fix_configuration(self):
-        self.scroll_and_get_element(self.SIXTH_FIX_CONFIGURATION).click()
+        self.scroll_and_get_element(self.SIXTH_FIX_CONFIG).click()
         assert self.get_element(self.SIXTH_FIX_CPU_FOOTER)
         assert self.get_element(self.SIXTH_FIX_RAM_FOOTER)
         assert self.get_element(self.SIXTH_FIX_SSD_FOOTER)
@@ -221,14 +282,14 @@ class VstackServersCalculatorPage(BasePage):
 
     @step("Change CPU in server calculator")
     def change_cpu_calculator(self):
-        self.repeat_action(self.INCREASE_CPU_BUTTON, 5)
-        self.repeat_action(self.DECREASE_CPU_BUTTON, 3)
+        self.repeat_action(self.INCREASE_CPU, 5)
+        self.repeat_action(self.DECREASE_CPU, 3)
         assert self.get_element(self.CPU_VALUE_FOOTER)
         return self
 
     @step("Change RAM in server calculator")
     def change_ram_calculator(self):
-        self.repeat_action(self.INCREASE_RAM_BUTTON, 7)
+        self.repeat_action(self.INCREASE_RAM, 7)
         self.repeat_action(self.DECREASE_RAM_BUTTON, 4)
         assert self.get_element(self.RAM_VALUE_FOOTER)
         return self
@@ -240,7 +301,7 @@ class VstackServersCalculatorPage(BasePage):
 
     @step("Delete public NIC in server calculator page")
     def delete_public_nic(self):
-        self.scroll_and_get_element(self.DELETE_FIRST_NIC_BUTTON)
+        self.scroll_and_get_element(self.DELETE_FIRST_NIC)
         assert self.scroll_and_get_element(self.NO_PUBLIC_NIC_MESSAGE)
         return self
 
@@ -281,31 +342,35 @@ class VstackServersCalculatorPage(BasePage):
 
     @step("Trying to decrease a boot disk in server calculator")
     def try_decrease_boot_disk_calculator(self):
-        initial_disk_size = self.scroll_and_get_element(self.BOOT_DISK_SIZE_COUNTER).text
-        self.get_element(self.DECREASE_BOOT_DISK_BUTTON).click()
+        initial_disk_size = self.scroll_and_get_element(
+            self.BOOT_DISK_SIZE_COUNTER).text
+        self.get_element(self.DECREASE_BOOT_DISK).click()
         current_disk_size = self.get_element(self.BOOT_DISK_SIZE_COUNTER).text
         if initial_disk_size == current_disk_size:
-            print("Test passed: Boot disk size remains unchanged")
+            print("Test passed: "
+                  "Boot disk size remains unchanged")
         else:
-            print("Test failed: Boot disk size changed after attempting to shrink")
+            print("Test failed: "
+                  "Boot disk size changed after attempting to shrink")
         return self
 
     @step("Adding two additional disks in the server calculator")
     def adding_two_volumes(self, first_disk_name, second_disk_name):
         self.scroll_and_get_element(self.ADD_VOLUME_BUTTON)
-        self.input_value(self.INPUT_FIRST_ADDITIONAL_DISK_NAME, first_disk_name)
-        self.repeat_action(self.INCREASE_FIRST_ADDITIONAL_DISK, 3)
+        self.input_value(self.INPUT_FIRST_ADD_DISK_NAME, first_disk_name)
+        self.repeat_action(self.INCREASE_FIRST_ADD_DISK, 3)
         self.scroll_and_get_element(self.ADD_VOLUME_BUTTON)
-        self.input_value(self.INPUT_SECOND_ADDITIONAL_DISK_NAME, second_disk_name)
-        self.repeat_action(self.INCREASE_SECOND_ADDITIONAL_DISK, 5)
+        self.input_value(self.INPUT_SECOND_ADD_DISK_NAME, second_disk_name)
+        self.repeat_action(self.INCREASE_SECOND_ADD_DISK, 5)
         self.get_element(self.CHECK_DISKS_SUM_CALC)
         return self
 
-    @step("Checking the maximum number of disks in the calculator and the sum of all disks in the footer")
+    @step("Checking the maximum number of disks in the calculator "
+          "and the sum of all disks in the footer")
     def check_max_count_disks_calculator(self):
         self.repeat_action(self.ADD_VOLUME_BUTTON, 4)
-        self.get_element(self.ADD_VOLUME_BUTTON_DISABLED)
-        self.repeat_action(self.DELETE_THIRD_ADDITIONAL_DISK, 2)
+        self.get_element(self.ADD_VOLUME_DISABLED)
+        self.repeat_action(self.DELETE_THIRD_ADD_DISK, 2)
         self.get_element(self.CHECK_DISKS_SUM_CALC)
         return self
 
@@ -358,20 +423,20 @@ class VstackServersCalculatorPage(BasePage):
 
     @step("Change network bandwidth")
     def change_network_bandwidth(self):
-        self.repeat_action(self.INCREASE_BANDWIDTH_BUTTON, 7)
-        self.repeat_action(self.DECREASE_BANDWIDTH_BUTTON, 4)
+        self.repeat_action(self.INCREASE_BANDWIDTH, 7)
+        self.repeat_action(self.DECREASE_BANDWIDTH, 4)
         assert self.get_element(self.NETWORK_VALUE_FOOTER)
         return self
 
     @step("Checking the maximum number of ifaces in the calculator")
     def check_max_count_ifaces(self):
         self.repeat_action(self.ADD_NETWORK_BUTTON, 4)
-        assert self.get_element(self.ADD_NETWORK_BUTTON_DISABLED)
+        assert self.get_element(self.ADD_NETWORK_DISABLED)
         return self
 
     @step("Checking the delete additional ifaces")
     def delete_additional_ifaces(self):
-        self.repeat_action(self.DELETE_NETWORK_BUTTON, 2)
+        self.repeat_action(self.DELETE_NETWORK, 2)
         assert self.get_element(self.NETWORK_SUM_VALUE_FOOTER)
         return self
 

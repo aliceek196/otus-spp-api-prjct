@@ -9,7 +9,8 @@ class BaseRequest:
         self.base_url = base_url
         self.header = header
 
-    def send_request(self, url, method, data=None, expected_error_code=False, expected_error_message=None):
+    def send_request(self, url, method, data=None, expected_error_code=False,
+                     expected_error_message=None):
         headers = self.header if self.header else None
         if method == 'GET':
             response = requests.get(url, headers=headers)
@@ -24,12 +25,15 @@ class BaseRequest:
         else:
             raise ValueError(f'Invalid HTTP method: {method}')
 
-        if not (expected_error_code or expected_error_message) and response.status_code not in (200, 201):
-            raise ValueError(f'Invalid status code: {response.status_code}, {response.text}')
+        if not (expected_error_code or expected_error_message) \
+                and response.status_code not in (200, 201):
+            raise ValueError(f'Invalid status code:'
+                             f'{response.status_code}, {response.text}')
 
         return response
 
-    def get(self, endpoint, object_id, expected_error_code=False, expected_error_message=None):
+    def get(self, endpoint, object_id, expected_error_code=False,
+            expected_error_message=None):
         url = f'{self.base_url}/{endpoint}/{object_id}'
         response = self.send_request(
             url,
@@ -42,7 +46,8 @@ class BaseRequest:
         except json.JSONDecodeError:
             return {}
 
-    def post(self, endpoint, object_id, data, expected_error_code=False, expected_error_message=None):
+    def post(self, endpoint, object_id, data, expected_error_code=False,
+             expected_error_message=None):
         url = f'{self.base_url}/{endpoint}/{object_id}'
         response = self.send_request(
             url,
@@ -53,7 +58,8 @@ class BaseRequest:
         )
         return response
 
-    def put(self, endpoint, object_id, data, expected_error_code=False, expected_error_message=None):
+    def put(self, endpoint, object_id, data, expected_error_code=False,
+            expected_error_message=None):
         url = f'{self.base_url}/{endpoint}/{object_id}'
         response = self.send_request(
             url,
@@ -64,7 +70,8 @@ class BaseRequest:
         )
         return response
 
-    def patch(self, endpoint, object_id, data, expected_error_code=False, expected_error_message=None):
+    def patch(self, endpoint, object_id, data, expected_error_code=False,
+              expected_error_message=None):
         url = f'{self.base_url}/{endpoint}/{object_id}'
         response = self.send_request(
             url,
@@ -75,7 +82,8 @@ class BaseRequest:
         )
         return response.json()
 
-    def delete(self, endpoint, object_id, expected_error_code=False, expected_error_message=None):
+    def delete(self, endpoint, object_id, expected_error_code=False,
+               expected_error_message=None):
         url = f'{self.base_url}/{endpoint}/{object_id}'
         response = self.send_request(
             url,
@@ -84,6 +92,3 @@ class BaseRequest:
             expected_error_message=expected_error_message
         )
         return response
-
-
-

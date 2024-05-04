@@ -7,29 +7,43 @@ class PublicAPIFuncs(BaseRequest):
     @staticmethod
     def wait_until_task_completed(public_api_client, task_id_value):
         while True:
-            task_details = public_api_client.get_task_by_id(task_id_value)
+            task_details = public_api_client.task_by_id(task_id_value)
             task_status = task_details["task"]["is_completed"]
             if task_status == "Completed":
                 break
             time.sleep(10)  # Check every 10 seconds
             if task_status == "Failed":
-                raise ValueError(f'Task FAILED')
+                raise ValueError(f'Task {task_status}')
 
     def assert_create_vm_data(actual_vm_data, expected_vm_data):
         # Ignore 'id' and 'created' keys in 'volumes'
-        expected_volumes = [{k: v for k, v in vol.items() if k not in ['id', 'created']} for vol in
-                            expected_vm_data["volumes"]]
-        actual_volumes = [{k: v for k, v in vol.items() if k not in ['id', 'created']} for vol in
-                          actual_vm_data["volumes"]]
+        expected_volumes = [{k: v for k, v in vol.items() if k not in
+                             ['id',
+                              'created']}
+                            for vol in expected_vm_data["volumes"]]
+        actual_volumes = [{k: v for k, v in vol.items() if k not in
+                           ['id',
+                            'created']} for vol in actual_vm_data["volumes"]]
         # Ignore params in networks (nics)
-        expected_networks = [{k: v for k, v in net.items() if
-                              k not in ['id', 'network_id', 'network_type', 'mac', 'created', 'ip_address', 'mask',
-                                        'gateway']} for net in
-                             expected_vm_data["networks"]]
-        actual_networks = [{k: v for k, v in net.items() if
-                            k not in ['id', 'network_id', 'network_type', 'mac', 'created', 'ip_address', 'mask',
-                                      'gateway']} for net in
-                           actual_vm_data["nics"]]
+        expected_networks = [{k: v for k, v in net.items() if k not in
+                              ['id',
+                               'network_id',
+                               'network_type',
+                               'mac',
+                               'created',
+                               'ip_address',
+                               'mask',
+                               'gateway']}
+                             for net in expected_vm_data["networks"]]
+        actual_networks = [{k: v for k, v in net.items() if k not in
+                            ['id',
+                             'network_id',
+                             'network_type',
+                             'mac',
+                             'created',
+                             'ip_address',
+                             'mask',
+                             'gateway']} for net in actual_vm_data["nics"]]
         expected_vm_data["volumes"] = expected_volumes
         actual_vm_data["volumes"] = actual_volumes
         expected_vm_data["networks"] = expected_networks
@@ -42,8 +56,6 @@ class PublicAPIFuncs(BaseRequest):
         assert actual_vm_data["nics"] == expected_vm_data["networks"]
         assert actual_vm_data["name"] == expected_vm_data["name"]
         assert actual_vm_data["tags"] == expected_vm_data["tags"]
-        assert actual_vm_data["is_power_on"] == True
+        assert actual_vm_data["is_power_on"] is True
         assert actual_vm_data["login"] == "root" or "Administrator"
         assert actual_vm_data["state"] == "Active"
-
-
