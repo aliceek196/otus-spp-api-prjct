@@ -1,7 +1,8 @@
 from selenium.webdriver.common.by import By
 from ui_testing.base_page import BasePage
 from allure import step
-from ui_testing.vstack_servers.vstack_servers_calc import VstackServersCalculatorPage
+from ui_testing.vstack_servers.vstack_servers_calc \
+    import VstackServersCalculatorPage
 
 
 class VstackServersListPage(BasePage):

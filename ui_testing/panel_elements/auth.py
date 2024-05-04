@@ -1,9 +1,7 @@
 import time
-
 from selenium.webdriver.common.by import By
 from ui_testing.base_page import BasePage
 from allure import step
-
 from ui_testing.panel_elements.panel_menu import MenuElement
 
 
@@ -19,7 +17,4 @@ class AuthPage(BasePage):
         self.input_value(self.PASSWORD_INPUT, password)
         self.click(self.SIGN_IN_BUTTON)
         time.sleep(5)
-        # assert self.get_element(self.ACCOUNT_ICON)
         return MenuElement(self.browser)
-
-
