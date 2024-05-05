@@ -2,7 +2,6 @@ import pytest
 from api_testing.api_funcs import PublicAPIFuncs
 from allure import title, feature
 
-
 edit_vm_data = {
     "location_id": "am2",
     "cpu": 2,
@@ -64,13 +63,13 @@ def test_edit_vm_configuration(public_api_client, cpu, ram_mb,
         assert change_vm_response.status_code == expected_error_code, \
             'Expected error code does not match'
         assert change_vm_response_json['errors'][0][
-                'message'] == expected_error_message, \
+                   'message'] == expected_error_message, \
             'Expected error message does not match'
     else:
         assert change_vm_response is not None, 'Failed to change vm'
         task_id_value = change_vm_response_json['task_id']
         PublicAPIFuncs.wait_until_task_completed(public_api_client,
-                                                task_id_value)
+                                                 task_id_value)
         changed_vm_details = public_api_client.get_vm_by_id(vm_id)['server']
         assert changed_vm_details['cpu'] == expected_cpu
         assert changed_vm_details['ram_mb'] == expected_ram_mb
