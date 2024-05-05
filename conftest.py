@@ -1,6 +1,7 @@
 import json
 import os
 import pytest
+import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.chrome.options import Options as ChromeOptions
@@ -136,3 +137,23 @@ def create_remote_driver(browser_name, version, executor):
         options=options
     )
     return driver
+
+
+@pytest.fixture(scope='session')
+def telegram_credentials():
+    return {
+        'bot_token': os.getenv('TG_BOT_TOKEN'),
+        'chat_id': os.getenv('TG_CHAT_ID')
+    }
+
+
+@pytest.fixture(scope="function")
+def send_telegram_message(bot_token, chat_id, message):
+    url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+    payload = {
+        "chat_id": chat_id,
+        "text": message
+    }
+    response = requests.post(url, json=payload)
+    if response.status_code != 200:
+        print(f"Failed to send Telegram message: {response.text}")
