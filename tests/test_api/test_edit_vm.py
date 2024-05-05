@@ -2,7 +2,6 @@ import pytest
 from api_testing.api_funcs import PublicAPIFuncs
 from allure import title, feature
 
-from conftest import send_telegram_message
 
 edit_vm_data = {
     "location_id": "am2",
@@ -50,38 +49,33 @@ def test_edit_vm_configuration(public_api_client, cpu, ram_mb,
                                expected_error_code, expected_error_message):
     """The test checks the PUT request to change CPU and RAM
     for a virtual machine with valid and invalid values"""
-    try:
-        create_vm_response = public_api_client.create_vm(**edit_vm_data)
-        create_vm_response_json = create_vm_response.json()
-        assert create_vm_response is not None, 'Failed to create vm'
-        task_id_value = create_vm_response_json['task_id']
-        PublicAPIFuncs.wait_until_task_completed(public_api_client, task_id_value)
-        vm_id = public_api_client.task_by_id(task_id_value)['task']['server_id']
-        vm_details = public_api_client.get_vm_by_id(vm_id)['server']
-        PublicAPIFuncs.assert_create_vm_data(vm_details, edit_vm_data)
-        change_vm_response = public_api_client.change_all_vm_configuration(
-            cpu, ram_mb, vm_id, expected_error_code, expected_error_message)
-        change_vm_response_json = change_vm_response.json()
-        if expected_error_code is not None:
-            assert change_vm_response.status_code == expected_error_code, \
-                'Expected error code does not match'
-            assert change_vm_response_json['errors'][0][
-                    'message'] == expected_error_message, \
-                'Expected error message does not match'
-        else:
-            assert change_vm_response is not None, 'Failed to change vm'
-            task_id_value = change_vm_response_json['task_id']
-            PublicAPIFuncs.wait_until_task_completed(public_api_client,
-                                                    task_id_value)
-            changed_vm_details = public_api_client.get_vm_by_id(vm_id)['server']
-            assert changed_vm_details['cpu'] == expected_cpu
-            assert changed_vm_details['ram_mb'] == expected_ram_mb
-        public_api_client.delete_vm(vm_id)
-        public_api_client.get_vm_by_id(vm_id, 404)
-    except Exception as e:
-        send_telegram_message(bot_token, chat_id, f" \U0000274C Test: 'Create StrongSwan VPN' FAILED:\n{e}")
-        raise
-    send_telegram_message(bot_token, chat_id, "\U00002705 Test: 'Create StrongSwan VPN' PASSED")
+    create_vm_response = public_api_client.create_vm(**edit_vm_data)
+    create_vm_response_json = create_vm_response.json()
+    assert create_vm_response is not None, 'Failed to create vm'
+    task_id_value = create_vm_response_json['task_id']
+    PublicAPIFuncs.wait_until_task_completed(public_api_client, task_id_value)
+    vm_id = public_api_client.task_by_id(task_id_value)['task']['server_id']
+    vm_details = public_api_client.get_vm_by_id(vm_id)['server']
+    PublicAPIFuncs.assert_create_vm_data(vm_details, edit_vm_data)
+    change_vm_response = public_api_client.change_all_vm_configuration(
+        cpu, ram_mb, vm_id, expected_error_code, expected_error_message)
+    change_vm_response_json = change_vm_response.json()
+    if expected_error_code is not None:
+        assert change_vm_response.status_code == expected_error_code, \
+            'Expected error code does not match'
+        assert change_vm_response_json['errors'][0][
+                   'message'] == expected_error_message, \
+            'Expected error message does not match'
+    else:
+        assert change_vm_response is not None, 'Failed to change vm'
+        task_id_value = change_vm_response_json['task_id']
+        PublicAPIFuncs.wait_until_task_completed(public_api_client,
+                                                 task_id_value)
+        changed_vm_details = public_api_client.get_vm_by_id(vm_id)['server']
+        assert changed_vm_details['cpu'] == expected_cpu
+        assert changed_vm_details['ram_mb'] == expected_ram_mb
+    public_api_client.delete_vm(vm_id)
+    public_api_client.get_vm_by_id(vm_id, 404)
 
 
 add_volume_vm_data = {
