@@ -1,0 +1,7 @@
+FROM python3.8-alpine
+WORKDIR /OtusSPPProject
+COPY requirements.txt
+RUN pip install -U pip
+RUN pip install -r requirements.txt
+COPY ..
+CMD ["pytest", "./tests/test_ui/", "-n", "3", "--executor", "93.183.73.3", "--panel_url", "http://auth.ss4test.com/", "--browser", "firefox", "--bv", "123.0"]
