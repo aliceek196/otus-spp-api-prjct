@@ -46,7 +46,7 @@ pytest ./tests/test_ui/ -n 3 --executor=local --panel_url=<auth_panel_URL> --bro
 ```
 Для запуска на удаленном сервере Selenoid, укажите его IP адрес: `--executor=<executor_IP>`
 
-Для дальнейшей генерации отчета Allure убедитесь, что Allure установлен на локальную машину, затем воспользуйтесь командой:
+Для дальнейшей генерации отчета Allure убедитесь, что Allure установлен на локальную машину и путь к исполняемому файлу allure добавлен в переменную окружения Path, затем воспользуйтесь командой:
 ```
-allure generate allure-results\ --single-file
+allure generate --single-file allure-results -o allure-report --clean
 ```
